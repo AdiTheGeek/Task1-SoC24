@@ -20,7 +20,7 @@ class Employee:
     name : str 
     age : int
     ID : int
-    city : int
+    city : str
     branches : list[int] # This is a list of branches (as branch codes) to which the employee may report
     salary : int 
 
@@ -46,12 +46,15 @@ class Employee:
         # Should work only on those employees who have a single
         # branch to report to. Fail for others.
         if len(self.branches) == 1:
-            if new_city != self.city:
-                self.city = new_city
+            x = branchmap[self.branches[0]]["city"]
+            y = branchmap[new_code]["city"]
+            if x == y:
+                self.branches = list(new_code)
                 return True
-            return False
+            else:
+                return False
         else:
-            "Works at multiple branches"
+            print("Works at multiple branches")
         # Change old branch to new if it is in the same city, else return false.
         pass
 
@@ -62,23 +65,25 @@ class Employee:
 
 
 
-
-
 class Engineer(Employee):
     position : str # Position in organization Hierarchy
 
+    bonus = 1.1
     def __init__(self, name, age, ID, city,\
                  branchcodes, position= "Junior", salary = None):
         # Call the parent's constructor
         super().__init__(name, age, ID, city, branchcodes, salary)
-        
+                     
+        pre_defined_positions = ["Junior","Senior","Team Lead","Director"]
+        assert position in pre_defined_positions, f"Postion {position} is not one of the pre-defined positions"
         # Check if position is one of  "Junior", "Senior", "Team Lead", or "Director" 
         # Only then set the position. 
 
     
     def increment(self, amt:int) -> None:
         # While other functions are the same for and engineer,
-        # and increment to an engineer's salary should add a 10% bonus on to "amt"
+        # an increment to an engineer's salary should add a 10% bonus on to "amt"
+        self.salary = self.salary + increment_amount* bonus
         pass
         
     def promote(self, position:str) -> bool:
