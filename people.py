@@ -36,17 +36,28 @@ class Employee:
     
     def change_city(self, new_city:str) -> bool:
         # Change the city 
+        if new_city != self.city:
+            self.city = new_city
+            return True
+        return False
         # Return true if city change, successful, return false if city same as old city
-        pass
 
     def migrate_branch(self, new_code:int) -> bool:
-        # Should work only on those employees who have a single 
+        # Should work only on those employees who have a single
         # branch to report to. Fail for others.
+        if len(self.branches) == 1:
+            if new_city != self.city:
+                self.city = new_city
+                return True
+            return False
+        else:
+            "Works at multiple branches"
         # Change old branch to new if it is in the same city, else return false.
         pass
 
     def increment(self, increment_amt: int) -> None:
         # Increment salary by amount specified.
+        self.salary = self.salary + increment_amount
         pass
 
 
